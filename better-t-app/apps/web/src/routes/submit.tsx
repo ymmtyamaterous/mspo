@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { authClient } from "@/lib/auth-client";
@@ -17,11 +17,14 @@ function SubmitPage() {
   const { data: session, isPending } = authClient.useSession();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!isPending && !session) {
+      navigate({ to: "/login" });
+    }
+  }, [isPending, session, navigate]);
+
   if (isPending) return <div style={{ padding: "64px", textAlign: "center", color: "var(--ms-muted)" }}>読み込み中...</div>;
-  if (!session) {
-    navigate({ to: "/login" });
-    return null;
-  }
+  if (!session) return null;
 
   return <SubmitForm />;
 }
