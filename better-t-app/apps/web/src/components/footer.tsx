@@ -76,9 +76,15 @@ export function Footer() {
             fontSize: "11px",
             color: "rgba(247,243,237,0.4)",
             letterSpacing: "0.05em",
+            display: "flex",
+            flexDirection: "column",
+            gap: "6px",
           }}
         >
-          © 2026 MinorSports. All rights reserved.
+          <div>© 2026 MinorSports. All rights reserved.</div>
+          <div>
+            🤖 本サイトのスポーツ紹介コンテンツは生成AI（Generative AI）によって作成されています。情報の正確性については保証できない場合があります。
+          </div>
         </div>
       </div>
     </footer>
